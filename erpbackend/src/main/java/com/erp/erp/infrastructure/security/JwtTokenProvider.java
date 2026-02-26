@@ -1,4 +1,4 @@
-package com.erp.erp.infrastructure.security;
+﻿package com.erp.erp.infrastructure.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Utility component to extract user information from the current JWT token.
- * Use this in services or controllers to get the authenticated user's details.
- */
 @Component
 public class JwtTokenProvider {
 
@@ -24,22 +20,17 @@ public class JwtTokenProvider {
         return Optional.empty();
     }
 
-    /** Keycloak subject (UUID of the user). */
     public Optional<String> getCurrentUserId() {
         return getCurrentJwt().map(Jwt::getSubject);
     }
 
-    /** preferred_username claim (login name). */
     public Optional<String> getCurrentUsername() {
         return getCurrentJwt().map(jwt -> jwt.getClaimAsString("preferred_username"));
     }
 
-    /** email claim. */
     public Optional<String> getCurrentEmail() {
         return getCurrentJwt().map(jwt -> jwt.getClaimAsString("email"));
     }
-
-    /** Returns the list of Keycloak realm roles for the current user. */
     @SuppressWarnings("unchecked")
     public List<String> getCurrentRoles() {
         return getCurrentJwt()
