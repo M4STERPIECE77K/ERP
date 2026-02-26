@@ -48,7 +48,8 @@ services:
       - .env
     environment:
       DATABASE_URL: ${FASTAPI_DATABASE_URL}
-      KEYCLOAK_URL: http://keycloak:8080
+      KEYCLOAK_PUBLIC_URL: http://localhost:8180
+      KEYCLOAK_INTERNAL_URL: http://keycloak:8080
       KEYCLOAK_REALM: erp
       KEYCLOAK_CLIENT_ID: erp-fastapi
     ports:
