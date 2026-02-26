@@ -1,4 +1,4 @@
-﻿package com.erp.erp.infrastructure.security;
+package com.erp.erp.infrastructure.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,3 +50,4 @@ public class JwtTokenProvider {
     public boolean isRh()      { return hasRole("rh"); }
     public boolean isEmploye() { return hasRole("employe"); }
 }
+

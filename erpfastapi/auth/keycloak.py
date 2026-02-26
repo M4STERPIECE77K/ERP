@@ -66,3 +66,8 @@ def require_roles(*roles: str):
             detail=f"Required role(s): {list(roles)}",
         )
     return _checker
+
+
+RequireAdmin   = Depends(require_roles("admin"))
+RequireRh      = Depends(require_roles("rh", "admin"))
+RequireEmploye = Depends(require_roles("employe", "rh", "admin"))
