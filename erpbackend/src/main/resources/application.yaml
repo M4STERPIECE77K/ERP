@@ -17,5 +17,17 @@ spring:
         dialect: org.hibernate.dialect.OracleDialect
         format_sql: true
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/erp}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8180/realms/erp/protocol/openid-connect/certs}
+
+keycloak:
+  realm: ${KEYCLOAK_REALM:erp}
+  auth-server-url: ${KEYCLOAK_URL:http://localhost:8180}
+  client-id: ${KEYCLOAK_CLIENT_ID:erp-backend}
+
 server:
   port: 8080
