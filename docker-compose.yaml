@@ -22,6 +22,26 @@ services:
       retries: 10
       start_period: 120s
 
+  erp-backend: 
+    build:
+      context: ./erpbackend
+      dockerfile: Dockerfile
+    container_name: erp_backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
+      SPRING_DATASOURCE_USERNAME: ${ORACLE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${ORACLE_USER_PASSWORD}
+    ports:
+      - "8089:8080"
+    depends_on:
+      oracle:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+
   keycloak:
     image: quay.io/keycloak/keycloak:26.1
     container_name: erp_keycloak

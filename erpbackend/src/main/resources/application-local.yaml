@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
+    username: erp_user
+    password: ${ORACLE_USER_PASSWORD:erp_password}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/erp
+          jwk-set-uri: http://localhost:8180/realms/erp/protocol/openid-connect/certs
+
+keycloak:
+  auth-server-url: http://localhost:8180
