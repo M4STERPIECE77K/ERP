@@ -18,4 +18,4 @@ erpkeycloak/import/*.json
 !erpkeycloak/import/erp-export.json
 
 docker-compose.override.yml
-
+erpfrontend/.env.local
