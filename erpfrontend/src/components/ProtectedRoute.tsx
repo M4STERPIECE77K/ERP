@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import type { AppRole } from "../types/auth";
 
 interface ProtectedRouteProps {

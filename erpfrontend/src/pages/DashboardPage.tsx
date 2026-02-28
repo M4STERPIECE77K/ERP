@@ -17,7 +17,7 @@ import {
   Tag,
 } from "@chakra-ui/react";
 import Sidebar from "../components/Sidebar";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { ROLES } from "../types/auth";
 interface KpiCardProps {
   label: string;

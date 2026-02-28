@@ -1,7 +1,6 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useState,
   type ReactNode,
@@ -12,6 +11,8 @@ import type { AppRole, AuthContextType, AuthUser } from "../types/auth";
 const AuthContext = createContext<AuthContextType | null>(null);
 
 const TOKEN_KEY = "erp_access_token";
+
+export { AuthContext };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user,      setUser]      = useState<AuthUser | null>(null);
@@ -76,10 +77,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth(): AuthContextType {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
-  return ctx;
 }
