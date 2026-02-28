@@ -145,6 +145,40 @@ function DonutChart() {
   );
 }
 
+function UpcomingEvents() {
+  const cardBg    = "white";
+  const borderClr = "gray.200";
+  const events = [
+    { title: "Réunion d'équipe", date: "Demain, 09:00", icon: "groups", color: "blue.500" },
+    { title: "Anniversaire de Sophie", date: "15 Oct", icon: "cake", color: "pink.500" },
+    { title: "Fin de période d'essai", date: "22 Oct - Jean D.", icon: "history_edu", color: "orange.500" },
+  ];
+
+  return (
+    <Box bg={cardBg} rounded="xl" p={6} shadow="sm" borderWidth="1px" borderColor={borderClr} display="flex" flexDir="column">
+      <Heading as="h3" fontSize="lg" fontWeight="bold" color="gray.900" mb={6}>
+        Événements à venir
+      </Heading>
+      <Flex flexDir="column" gap={5} flex={1}>
+        {events.map((event, i) => (
+          <Flex key={i} align="center" gap={3}>
+            <Flex boxSize={10} bg="gray.50" rounded="xl" align="center" justify="center" flexShrink={0} border="1px solid" borderColor="gray.100">
+                 <Box as="span" className="material-symbols-outlined" fontSize="22px" color={event.color}>{event.icon}</Box>
+            </Flex>
+            <Box overflow="hidden">
+              <Text fontSize="sm" fontWeight="bold" color="gray.900" isTruncated>{event.title}</Text>
+              <Text fontSize="xs" color="gray.500" fontWeight="medium">{event.date}</Text>
+            </Box>
+          </Flex>
+        ))}
+      </Flex>
+      <Link color="#1E3A5F" fontSize="xs" fontWeight="bold" display="block" mt={6} textAlign="center" py={2} bg="gray.50" rounded="lg" _hover={{ bg: "gray.100", textDecoration: 'none' }}>
+        Consulter le calendrier
+      </Link>
+    </Box>
+  );
+}
+
 const leaveData = [
   { initials: "SM", bgColor: "rgba(30,58,95,0.1)",  textColor: "#1E3A5F",  name: "Sophie Martin", type: "Congés payés", dates: "12 Oct - 15 Oct", days: "4 jours",  status: "EN ATTENTE" },
   { initials: "TL", bgColor: "rgba(13,148,136,0.1)",textColor: "#0d9488",  name: "Thomas Leroy",  type: "RTT", dates: "20 Oct - 20 Oct", days: "1 jour",   status: "APPROUVÉ"   },
@@ -215,7 +249,7 @@ function LeaveTable() {
                   />
                 </Td>
               </Tr>
-            ))}
+            ))} 
           </Tbody>
         </Table>
       </Box>
@@ -273,10 +307,10 @@ export default function DashboardPage() {
   ];
 
   return (
-    <Flex h="100vh" overflow="hidden" fontFamily="'Inter', sans-serif">
+    <Flex h="100vh" w="full" overflow="hidden" fontFamily="'Inter', sans-serif">
       <Sidebar activePage="dashboard" />
-      <Box as="main" flex={1} h="full" overflowY="auto" bg={bgPage} p={8} sx={{ "&::-webkit-scrollbar": { width: "8px", height: "8px" }, "&::-webkit-scrollbar-track": { background: "transparent" }, "&::-webkit-scrollbar-thumb": { background: "#cbd5e1", borderRadius: "4px" }, "&::-webkit-scrollbar-thumb:hover": { background: "#94a3b8" },  }}>
-        <Box maxW="1200px" mx="auto" display="flex" flexDir="column" gap={8}>
+      <Box as="main" flex={1} h="full" overflowY="auto" bg={bgPage} p={{ base: 4, lg: 8 }} sx={{ "&::-webkit-scrollbar": { width: "8px", height: "8px" }, "&::-webkit-scrollbar-track": { background: "transparent" }, "&::-webkit-scrollbar-thumb": { background: "#cbd5e1", borderRadius: "4px" }, "&::-webkit-scrollbar-thumb:hover": { background: "#94a3b8" },  }}>
+        <Box maxW="1600px" mx="auto" w="full" display="flex" flexDir="column" gap={8}>
           <Flex
             as="header"
             justify="space-between"
@@ -363,9 +397,10 @@ export default function DashboardPage() {
               <KpiCard key={card.label} {...card} />
             ))}
           </SimpleGrid>
-          <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, lg: 4 }} spacing={6}>
             <BarChart />
             <DonutChart />
+            <UpcomingEvents />
           </SimpleGrid>
           <LeaveTable />
 
